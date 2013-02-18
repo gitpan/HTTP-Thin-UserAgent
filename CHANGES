@@ -1,6 +1,17 @@
 Changelog for HTTP-Thin-UserAgent
 
-0.001 2013-02-18T22:12:20
+0.002 2013-02-18T23:16:31
+ [Chris Prather <chris@prather.org>]
+ - Add a warning about API breakage
+
+ - split the API out a little
+   
+   You'll now need to call a terminal method to get the response data
+   (response, or decode currently). This is so we aren't rail-roaded into
+   getting the response-as-a-perltruct when calling as_json.
+
+
+v0.001 2013-02-18T22:12:05
  [Chris Prather <chris@prather.org>]
  - prepare a bit more for a release
 

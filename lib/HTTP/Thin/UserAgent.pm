@@ -1,6 +1,6 @@
 package HTTP::Thin::UserAgent;
 {
-  $HTTP::Thin::UserAgent::VERSION = '0.001';
+  $HTTP::Thin::UserAgent::VERSION = '0.002';
 }
 use 5.12.1;
 use warnings;
@@ -11,7 +11,7 @@ use warnings;
 
     package HTTP::Thin::UserAgent::Client;
 {
-  $HTTP::Thin::UserAgent::Client::VERSION = '0.001';
+  $HTTP::Thin::UserAgent::Client::VERSION = '0.002';
 }
     use Moo;
     use MooX::late;
@@ -24,8 +24,14 @@ use warnings;
     );
 
     has request => ( is => 'ro' );
+    has decoder => ( is => 'rw' );
 
-    sub as_raw {
+    sub decode {
+        my $self = shift;
+        return $self->decoder->($self->response);
+    }
+    
+    sub response {
         my $self   = shift;
         my $ua     = $self->ua;
         my $request = $self->request;
@@ -39,10 +45,10 @@ use warnings;
         if ( my $data = shift ) {
             $request->content( JSON::Any->encode($data) );
         }
-        my $res = $self->as_raw;
-        return JSON::Any->decode( $res->content ) if $res->is_success;
-        return;
+        $self->decoder( sub { JSON::Any->decode(shift->content) } );
+        return $self;
     }
+
 }
 
 use parent qw(Exporter);
@@ -70,15 +76,17 @@ HTTP::Thin::UserAgent - A Thin UserAgent around some useful modules.
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
     use HTTP::Thin::UserAgent;
 
-    my $data = http(GET http://api.metacpan.org/v0/author/PERIGRIN?join=favorite)->as_json;
+    my $data = http(GET http://api.metacpan.org/v0/author/PERIGRIN?join=favorite)->as_json->decode;
 
 =head1 DESCRIPTION
+
+WARNING this code is still *alpha* quality. While it will work as advertised on the tin, API breakage will likely be common until things settle down a bit. 
 
 C<HTTP::Thin::UserAgent> provides what I hope is a thin layer over L<HTTP::Thin>. It exposes an functional API that hopefully makes writing HTTP clients easier. Right now it's in *very* alpha stage and really only helps for writing JSON clients. The intent is to expand it to be more generally useful but a JSON client was what I needed first.
 
