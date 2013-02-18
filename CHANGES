@@ -1,0 +1,23 @@
+Changelog for HTTP-Thin-UserAgent
+
+0.001 2013-02-18T22:12:20
+ [Chris Prather <chris@prather.org>]
+ - prepare a bit more for a release
+
+ - remove extra POD that Pod::Weaver will generate
+
+ - add some basic docs
+
+ - fix synopsis to match current code style
+
+ - add Pod::Weaver plugin
+
+ - ignore .swp files too
+
+ - add a better example to the README
+
+ - initial code
+
+ - initial commit
+
+

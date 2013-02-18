@@ -1,0 +1,11 @@
+CHANGES
+LICENSE
+MANIFEST
+META.yml
+Makefile.PL
+README
+README.md
+dist.ini
+lib/HTTP/Thin/UserAgent.pm
+t/00-compile.t
+t/01.basic.t
