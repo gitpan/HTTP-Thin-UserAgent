@@ -1,6 +1,11 @@
 Changelog for HTTP-Thin-UserAgent
 
-0.002 2013-02-18T23:16:31
+0.003 2013-02-18T23:43:55
+ [Chris Prather <chris@prather.org>]
+ - Fix it so that the content-type is set also with add_json
+
+
+v0.002 2013-02-18T23:07:26
  [Chris Prather <chris@prather.org>]
  - Add a warning about API breakage
 

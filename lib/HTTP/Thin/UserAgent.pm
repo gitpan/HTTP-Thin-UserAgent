@@ -1,6 +1,6 @@
 package HTTP::Thin::UserAgent;
 {
-  $HTTP::Thin::UserAgent::VERSION = '0.002';
+  $HTTP::Thin::UserAgent::VERSION = '0.003';
 }
 use 5.12.1;
 use warnings;
@@ -11,7 +11,7 @@ use warnings;
 
     package HTTP::Thin::UserAgent::Client;
 {
-  $HTTP::Thin::UserAgent::Client::VERSION = '0.002';
+  $HTTP::Thin::UserAgent::Client::VERSION = '0.003';
 }
     use Moo;
     use MooX::late;
@@ -28,24 +28,27 @@ use warnings;
 
     sub decode {
         my $self = shift;
-        return $self->decoder->($self->response);
+        return $self->decoder->( $self->response );
     }
-    
+
     sub response {
-        my $self   = shift;
-        my $ua     = $self->ua;
+        my $self    = shift;
+        my $ua      = $self->ua;
         my $request = $self->request;
         return $ua->request($request);
     }
 
     sub as_json {
-        my $self = shift;
+        my $self    = shift;
         my $request = $self->request;
-        $request->header( 'Accept' => 'application/json' );
+        $request->header(
+            'Accept'       => 'application/json',
+            'Content-Type' => 'application/json',
+        );
         if ( my $data = shift ) {
             $request->content( JSON::Any->encode($data) );
         }
-        $self->decoder( sub { JSON::Any->decode(shift->content) } );
+        $self->decoder( sub { JSON::Any->decode( shift->content ) } );
         return $self;
     }
 
@@ -76,7 +79,7 @@ HTTP::Thin::UserAgent - A Thin UserAgent around some useful modules.
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
