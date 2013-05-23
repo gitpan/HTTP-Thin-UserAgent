@@ -1,6 +1,23 @@
 Changelog for HTTP-Thin-UserAgent
 
-0.003 2013-02-18T23:43:55
+0.004 2013-05-23T21:35:48
+ [Chris Prather <chris@prather.org>]
+ - add back decoded_content this time as an alias
+
+ - update README
+
+ - bring in changes from usage at Followerwonk
+
+ - add on_error handling and structured exceptions
+   
+   We add a new on_error handler that can be set to handle exceptions when
+   we see them. The handler is passed a structured exception object (that
+   does Throwable) but defaults to dying with just the error message.
+
+ - s/decode/decoded_content/ to match HTTP::Message
+
+
+v0.003 2013-02-18T23:43:47
  [Chris Prather <chris@prather.org>]
  - Fix it so that the content-type is set also with add_json
 

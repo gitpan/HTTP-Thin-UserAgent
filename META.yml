@@ -18,6 +18,7 @@ meta-spec:
   version: 1.4
 name: HTTP-Thin-UserAgent
 requires:
+  Data::Dumper: 0
   Exporter: 0
   HTTP::Request::Common: 0
   HTTP::Thin: 0
@@ -25,10 +26,11 @@ requires:
   JSON::Any: 0
   Moo: 0
   MooX::late: 0
+  Throwable::Factory: 0
   parent: 0
   perl: v5.12.1
   warnings: 0
 resources:
   homepage: https://github.com/perigrin/http-thin-useragent
   repository: https://github.com/perigrin/http-thin-useragent.git
-version: 0.003
+version: 0.004

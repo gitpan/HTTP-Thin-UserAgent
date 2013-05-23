@@ -1,6 +1,6 @@
 package HTTP::Thin::UserAgent;
 {
-  $HTTP::Thin::UserAgent::VERSION = '0.003';
+  $HTTP::Thin::UserAgent::VERSION = '0.004';
 }
 use 5.12.1;
 use warnings;
@@ -11,12 +11,16 @@ use warnings;
 
     package HTTP::Thin::UserAgent::Client;
 {
-  $HTTP::Thin::UserAgent::Client::VERSION = '0.003';
+  $HTTP::Thin::UserAgent::Client::VERSION = '0.004';
 }
     use Moo;
     use MooX::late;
     use HTTP::Thin;
     use JSON::Any;
+
+    use Throwable::Factory
+      UnexpectedResponse => [qw($response)],
+      ;
 
     has ua => (
         is      => 'ro',
@@ -24,6 +28,12 @@ use warnings;
     );
 
     has request => ( is => 'ro' );
+    has on_error => (
+        is      => 'rw',
+        default => sub {
+            sub { die $_->message }
+        }
+    );
     has decoder => ( is => 'rw' );
 
     sub decode {
@@ -31,7 +41,16 @@ use warnings;
         return $self->decoder->( $self->response );
     }
 
-    sub response {
+    sub decoded_content { shift->decode }
+
+    has response => (
+        is      => 'ro',
+        lazy    => 1,
+        builder => '_build_response',
+        handles => ['content'],
+    );
+
+    sub _build_response {
         my $self    = shift;
         my $ua      = $self->ua;
         my $request = $self->request;
@@ -41,16 +60,38 @@ use warnings;
     sub as_json {
         my $self    = shift;
         my $request = $self->request;
+
         $request->header(
             'Accept'       => 'application/json',
             'Content-Type' => 'application/json',
         );
+
         if ( my $data = shift ) {
             $request->content( JSON::Any->encode($data) );
         }
-        $self->decoder( sub { JSON::Any->decode( shift->content ) } );
+
+        $self->decoder(
+            sub {
+                my $res          = shift;
+                my $content_type = $res->header('Content-Type');
+                unless ( $content_type =~ m'application/json' ) {
+                    my $error = UnexpectedResponse->new(
+                        message =>
+                          "Content-Type was $content_type not application/json",
+                        response => $res,
+                    );
+                    for ($error) {
+                        $self->on_error->($error);
+                    }
+                }
+                JSON::Any->decode( $res->content );
+            }
+        );
+
         return $self;
     }
+
+    sub dump { require Data::Dumper; return Data::Dumper::Dumper(shift) }
 
 }
 
@@ -79,7 +120,7 @@ HTTP::Thin::UserAgent - A Thin UserAgent around some useful modules.
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 

@@ -26,6 +26,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "HTTP::Thin::UserAgent",
   "PREREQ_PM" => {
+    "Data::Dumper" => 0,
     "Exporter" => 0,
     "HTTP::Request::Common" => 0,
     "HTTP::Thin" => 0,
@@ -33,10 +34,11 @@ my %WriteMakefileArgs = (
     "JSON::Any" => 0,
     "Moo" => 0,
     "MooX::late" => 0,
+    "Throwable::Factory" => 0,
     "parent" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.003",
+  "VERSION" => "0.004",
   "test" => {
     "TESTS" => "t/*.t"
   }
