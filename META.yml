@@ -35,4 +35,4 @@ requires:
 resources:
   homepage: https://github.com/perigrin/http-thin-useragent
   repository: https://github.com/perigrin/http-thin-useragent.git
-version: 0.005
+version: 0.006

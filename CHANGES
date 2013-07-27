@@ -1,6 +1,9 @@
 Changelog for HTTP-Thin-UserAgent
 
-v0.005 2013-07-27T00:04:48
+v0.006 2013-07-27T00:23:21
+ - decode utf8 by default [Chris Prather]
+
+v0.005 2013-07-27T00:04:40
  - clean the POD up a little [Chris Prather]
  - Merge pull request #1 from perigrin/web-scraper
    

@@ -1,6 +1,6 @@
 package HTTP::Thin::UserAgent;
 {
-  $HTTP::Thin::UserAgent::VERSION = '0.005';
+  $HTTP::Thin::UserAgent::VERSION = '0.006';
 }
 use 5.12.1;
 use warnings;
@@ -11,7 +11,7 @@ use warnings;
 
     package HTTP::Thin::UserAgent::Client;
 {
-  $HTTP::Thin::UserAgent::Client::VERSION = '0.005';
+  $HTTP::Thin::UserAgent::Client::VERSION = '0.006';
 }
     use Moo;
     use MooX::late;
@@ -50,7 +50,7 @@ use warnings;
         is      => 'ro',
         lazy    => 1,
         builder => '_build_response',
-        handles => ['content'],
+        handles => { 'content' => 'decoded_content' },
     );
 
     sub _build_response {
@@ -116,7 +116,7 @@ use warnings;
         return $self;
     }
 
-    sub tree { 
+    sub tree {
         my ($self) = @_;
         my $t = HTML::TreeBuilder::XPath->new;
         $t->store_comments(1) if ( $t->can('store_comments') );
@@ -127,8 +127,14 @@ use warnings;
 
     sub find {
         my ( $self, $exp ) = @_;
-        my $xpath = $exp =~ m!^(?:/|id\()! ? $exp : HTML::Selector::XPath::selector_to_xpath($exp);
-        my @nodes = try { $self->tree->findnodes($xpath) } catch { 
+
+        my $xpath =
+            $exp =~ m!^(?:/|id\()!
+          ? $exp
+          : HTML::Selector::XPath::selector_to_xpath($exp);
+
+        my @nodes = try { $self->tree->findnodes($xpath) }
+        catch {
             for ($_) { $self->on_error($_) }
         };
         return unless @nodes;
@@ -164,7 +170,7 @@ HTTP::Thin::UserAgent - A Thin UserAgent around some useful modules.
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 SYNOPSIS
 
