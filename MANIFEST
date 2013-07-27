@@ -9,3 +9,4 @@ dist.ini
 lib/HTTP/Thin/UserAgent.pm
 t/00-compile.t
 t/01.basic.t
+t/02.find.t
