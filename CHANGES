@@ -1,6 +1,10 @@
 Changelog for HTTP-Thin-UserAgent
 
-v0.006 2013-07-27T00:23:21
+v0.007 2013-08-16T06:03:11
+ - add Web::Scraper to the cpanfile [Chris Prather]
+ - use decoded_content rather than the raw content [Chris Prather]
+
+v0.006 2013-07-27T00:23:08
  - decode utf8 by default [Chris Prather]
 
 v0.005 2013-07-27T00:04:40

@@ -1,6 +1,6 @@
 package HTTP::Thin::UserAgent;
 {
-  $HTTP::Thin::UserAgent::VERSION = '0.006';
+  $HTTP::Thin::UserAgent::VERSION = '0.007';
 }
 use 5.12.1;
 use warnings;
@@ -11,7 +11,7 @@ use warnings;
 
     package HTTP::Thin::UserAgent::Client;
 {
-  $HTTP::Thin::UserAgent::Client::VERSION = '0.006';
+  $HTTP::Thin::UserAgent::Client::VERSION = '0.007';
 }
     use Moo;
     use MooX::late;
@@ -87,7 +87,7 @@ use warnings;
                         $self->on_error->($error);
                     }
                 }
-                JSON::Any->decode( $res->content );
+                JSON::Any->decode( $res->decoded_content );
             }
         );
 
@@ -98,11 +98,11 @@ use warnings;
 
     sub scraper {
         my ( $self, $scraper ) = @_;
-        my $res = $self->response;
+
         $self->decoder(
             sub {
                 my $res = shift;
-                my $data = try { $scraper->scrape( $res->content ) }
+                my $data = try { $scraper->scrape( $res->decoded_content ) }
                 catch {
                     my $error = UnexpectedResponse->new(
                         message  => $_,
@@ -170,7 +170,7 @@ HTTP::Thin::UserAgent - A Thin UserAgent around some useful modules.
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 SYNOPSIS
 

@@ -3,10 +3,10 @@ abstract: 'A Thin UserAgent around some useful modules.'
 author:
   - 'Chris Prather <chris@prather.org>'
 build_requires:
-  File::Find: 0
-  File::Temp: 0
-  Test::More: 0
+  Capture::Tiny: 0
+  Test::More: 0.88
   Test::Requires::Env: 0
+  blib: 0
   strict: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
@@ -35,4 +35,4 @@ requires:
 resources:
   homepage: https://github.com/perigrin/http-thin-useragent
   repository: https://github.com/perigrin/http-thin-useragent.git
-version: 0.006
+version: 0.007
