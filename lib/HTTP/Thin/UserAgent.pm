@@ -1,5 +1,5 @@
 package HTTP::Thin::UserAgent;
-$HTTP::Thin::UserAgent::VERSION = '0.008';
+$HTTP::Thin::UserAgent::VERSION = '0.009';
 use 5.12.1;
 use warnings;
 
@@ -177,7 +177,7 @@ HTTP::Thin::UserAgent - A Thin UserAgent around some useful modules.
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SYNOPSIS
 

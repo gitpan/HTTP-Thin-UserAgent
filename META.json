@@ -1,0 +1,63 @@
+{
+   "abstract" : "A Thin UserAgent around some useful modules.",
+   "author" : [
+      "Chris Prather <chris@prather.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 5.015, CPAN::Meta::Converter version 2.140640",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "HTTP-Thin-UserAgent",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.30"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Data::Dumper" : "0",
+            "Exporter" : "0",
+            "HTTP::Request::Common" : "0",
+            "HTTP::Thin" : "0",
+            "Import::Into" : "0",
+            "JSON::Any" : "0",
+            "Moo" : "0",
+            "MooX::late" : "0",
+            "Throwable::Factory" : "0",
+            "Try::Tiny" : "0",
+            "Web::Scraper" : "0",
+            "constant" : "0",
+            "parent" : "0",
+            "perl" : "v5.12.1",
+            "warnings" : "0"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "File::Spec" : "0",
+            "IO::Handle" : "0",
+            "IPC::Open3" : "0",
+            "Test::More" : "0",
+            "Test::Requires::Env" : "0",
+            "strict" : "0"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "homepage" : "https://github.com/perigrin/http-thin-useragent",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/perigrin/http-thin-useragent.git",
+         "web" : "https://github.com/perigrin/http-thin-useragent"
+      }
+   },
+   "version" : "0.009"
+}
+

@@ -1,6 +1,10 @@
 Changelog for HTTP-Thin-UserAgent
 
-0.008 2014-07-02T01:19:45
+0.009 2014-07-02T17:00:46
+ - prevent the inclusion of local/ in the packaged dist; include META.json
+   v2 data (Karen Etheridge)
+
+0.008 2014-07-02T01:19:32
  - ignore changes too (Chris Prather)
  - ignore carton stuff (Chris Prather)
  - hide HTTP::Thin::UserAgent::Client from dzil and cpan (Chris Prather)
