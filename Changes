@@ -1,0 +1,53 @@
+Changelog for HTTP-Thin-UserAgent
+
+0.008 2014-07-02T01:19:45
+ - ignore changes too (Chris Prather)
+ - ignore carton stuff (Chris Prather)
+ - hide HTTP::Thin::UserAgent::Client from dzil and cpan (Chris Prather)
+ - fix the Kevin Bacon test (Chris Prather)
+ - add TRACE=1 feature to assist in debugging HTTP request / response
+   cycles (Chris Prather)
+
+0.007 2013-08-16T05:13:33
+ - add Web::Scraper to the cpanfile (Chris Prather)
+ - use decoded_content rather than the raw content (Chris Prather)
+
+0.006 2013-07-27T00:23:08
+ - decode utf8 by default (Chris Prather)
+
+0.005 2013-07-27T00:04:40
+ - clean the POD up a little (Chris Prather)
+ - add find() and tree() methods for when we want to avoid a full scraper
+   (Chris Prather)
+ - make it work more like as_json() (Chris Prather)
+ - update the documentation (Chris Prather)
+ - add Web::Scraper to the mix (Chris Prather)
+ - add a cpanfile so we can install deps without pulling in all of dzil
+   (Chris Prather)
+
+0.004 2013-05-23T21:30:26
+ - add back decoded_content this time as an alias (Chris Prather)
+ - update README (Chris Prather)
+ - bring in changes from usage at Followerwonk (Chris Prather)
+ - add on_error handling and structured exceptions (Chris Prather)
+ - s/decode/decoded_content/ to match HTTP::Message (Chris Prather)
+
+0.003 2013-02-18T23:43:47
+ - Fix it so that the content-type is set also with add_json (Chris
+   Prather)
+
+0.002 2013-02-18T23:07:26
+ - Add a warning about API breakage (Chris Prather)
+ - split the API out a little (Chris Prather)
+
+0.001 2013-02-18T22:12:05
+ - prepare a bit more for a release (Chris Prather)
+ - remove extra POD that Pod::Weaver will generate (Chris Prather)
+ - add some basic docs (Chris Prather)
+ - fix synopsis to match current code style (Chris Prather)
+ - add Pod::Weaver plugin (Chris Prather)
+ - ignore .swp files too (Chris Prather)
+ - add a better example to the README (Chris Prather)
+ - initial code (Chris Prather)
+ - initial commit (Chris Prather)
+
